@@ -1,0 +1,187 @@
+{
+  "schemaVersion": 1,
+  "name": "Jarvis-Bot",
+  "author": "martin999-dotcom",
+  "version": "1.1.1",
+  "description": "Blue robot companion with a red lightsaber, pupils that follow your cursor, a Matrix-rain chest monitor while coding, thought sparks while thinking, a victory dance when a task is done - and it throws up screws and oil if you shake it.",
+  "customization": {
+    "petTint": false
+  },
+  "viewBox": {
+    "x": -15,
+    "y": -25,
+    "width": 45,
+    "height": 45
+  },
+  "layout": {
+    "contentBox": {
+      "x": -2,
+      "y": -13,
+      "width": 18,
+      "height": 26
+    },
+    "centerX": 7.5,
+    "baselineY": 17,
+    "visibleHeightRatio": 0.58,
+    "baselineBottomRatio": 0.05
+  },
+  "eyeTracking": {
+    "enabled": true,
+    "states": [
+      "idle"
+    ],
+    "eyeRatioX": 0.528,
+    "eyeRatioY": 0.246,
+    "maxOffset": 10,
+    "trackingLayers": {
+      "pupils": {
+        "ids": [
+          "pupils-track"
+        ],
+        "maxOffset": 5,
+        "ease": 0.2
+      },
+      "eyes": {
+        "ids": [
+          "eyes-track"
+        ],
+        "maxOffset": 3,
+        "ease": 0.12
+      },
+      "head": {
+        "ids": [
+          "head-track"
+        ],
+        "maxOffset": 2.5,
+        "ease": 0.08
+      }
+    }
+  },
+  "roamFlipAssets": false,
+  "states": {
+    "idle": [
+      "jbot-idle-follow.svg"
+    ],
+    "roam": [
+      "jbot-roam.svg"
+    ],
+    "thinking": [
+      "jbot-thinking.svg"
+    ],
+    "working": [
+      "jbot-working.svg"
+    ],
+    "juggling": [
+      "jbot-working.svg"
+    ],
+    "error": [
+      "jbot-error.svg"
+    ],
+    "attention": [
+      "jbot-attention-1.svg",
+      "jbot-attention-2.svg",
+      "jbot-attention-3.svg",
+      "jbot-attention-4.svg"
+    ],
+    "notification": [
+      "jbot-notification-1.svg",
+      "jbot-notification-2.svg",
+      "jbot-notification-3.svg",
+      "jbot-notification-4.svg"
+    ],
+    "sleeping": [
+      "jbot-sleeping.svg"
+    ],
+    "waking": [
+      "jbot-waking.svg"
+    ]
+  },
+  "sleepSequence": {
+    "mode": "direct"
+  },
+  "idleAnimations": [
+    {
+      "file": "jbot-idle-look.svg",
+      "duration": 6500
+    },
+    {
+      "file": "jbot-idle-crazy.svg",
+      "duration": 3000
+    }
+  ],
+  "timings": {
+    "minDisplay": {
+      "attention": 4500,
+      "error": 5000,
+      "notification": 5200,
+      "working": 1000,
+      "thinking": 1000
+    },
+    "autoReturn": {
+      "attention": 4500,
+      "error": 5000,
+      "notification": 5200
+    },
+    "mouseIdleTimeout": 20000,
+    "mouseSleepTimeout": 60000
+  },
+  "hitBoxes": {
+    "default": {
+      "x": -1,
+      "y": -11,
+      "w": 20,
+      "h": 22
+    },
+    "sleeping": {
+      "x": -1,
+      "y": 2,
+      "w": 17,
+      "h": 10
+    },
+    "wide": {
+      "x": -3,
+      "y": -13,
+      "w": 24,
+      "h": 24
+    }
+  },
+  "wideHitboxFiles": [
+    "jbot-error.svg",
+    "jbot-idle-crazy.svg",
+    "jbot-attention-1.svg",
+    "jbot-attention-2.svg",
+    "jbot-attention-3.svg",
+    "jbot-attention-4.svg",
+    "jbot-notification-1.svg",
+    "jbot-notification-2.svg",
+    "jbot-notification-3.svg",
+    "jbot-notification-4.svg"
+  ],
+  "sleepingHitboxFiles": [
+    "jbot-sleeping.svg"
+  ],
+  "reactions": {
+    "drag": {
+      "file": "jbot-react-drag.svg"
+    },
+    "clickLeft": {
+      "file": "jbot-react-left.svg",
+      "duration": 2500
+    },
+    "clickRight": {
+      "file": "jbot-react-right.svg",
+      "duration": 2500
+    }
+  },
+  "miniMode": {
+    "supported": false
+  },
+  "objectScale": {
+    "widthRatio": 1.9,
+    "heightRatio": 1.3,
+    "offsetX": -0.45,
+    "offsetY": -0.25
+  },
+  "license": "MIT",
+  "repo": "https://github.com/martin999-dotcom/clawd-jarvis-bot-theme"
+}

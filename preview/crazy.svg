@@ -1,0 +1,192 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-6 -21 30 38">
+  <defs>
+    <linearGradient id="gShell" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2d445c"/>
+      <stop offset="45%" stop-color="#1b2a3a"/>
+      <stop offset="100%" stop-color="#0f1922"/>
+    </linearGradient>
+    <linearGradient id="gPanel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#31506c"/>
+      <stop offset="100%" stop-color="#172838"/>
+    </linearGradient>
+    <linearGradient id="gVisor" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#10212d"/>
+      <stop offset="100%" stop-color="#040b12"/>
+    </linearGradient>
+    <radialGradient id="gEye" cx="0.5" cy="0.42" r="0.68">
+      <stop offset="0%" stop-color="#f2feff"/>
+      <stop offset="38%" stop-color="#86f2ff"/>
+      <stop offset="100%" stop-color="#16b4d8"/>
+    </radialGradient>
+    <radialGradient id="gCore" cx="0.45" cy="0.4" r="0.6">
+      <stop offset="0%" stop-color="#d8fcff"/>
+      <stop offset="40%" stop-color="#3fe4ff"/>
+      <stop offset="100%" stop-color="#0a6f8a"/>
+    </radialGradient>
+    <radialGradient id="gShadow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0%" stop-color="#000" stop-opacity="0.38"/>
+      <stop offset="100%" stop-color="#000" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="sabSpectrum" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0%"   stop-color="#ffc39a"/>
+      <stop offset="16%"  stop-color="#ff6a3c"/>
+      <stop offset="42%"  stop-color="#ff2038"/>
+      <stop offset="70%"  stop-color="#e10032"/>
+      <stop offset="100%" stop-color="#7d001f"/>
+    </linearGradient>
+    <filter id="sabBlur" x="-250%" y="-60%" width="600%" height="220%">
+      <feGaussianBlur stdDeviation="0.55"/>
+    </filter>
+  </defs>
+  <style>
+    .shell   { fill:url(#gShell); stroke:#070d13; stroke-width:0.35; }
+    .panel   { fill:url(#gPanel); stroke:#070d13; stroke-width:0.3; }
+    .cyanGlow{ fill:#35e6ff; }
+    .core    { fill:url(#gCore); stroke:#8ff4ff; stroke-width:0.25; }
+
+    @keyframes jbCrazyShake {
+      0%   { transform: translate(0,0) rotate(0deg); }
+      15%  { transform: translate(-0.9px,0.3px) rotate(-5deg); }
+      30%  { transform: translate(0.8px,-0.2px) rotate(4deg); }
+      45%  { transform: translate(-0.6px,0.4px) rotate(-6deg); }
+      60%  { transform: translate(0.9px,-0.3px) rotate(5deg); }
+      75%  { transform: translate(-0.7px,0.2px) rotate(-3deg); }
+      90%  { transform: translate(0.5px,-0.2px) rotate(3deg); }
+      100% { transform: translate(0,0) rotate(0deg); }
+    }
+    #body-crazy { transform-origin: 7.5px 8px; animation: jbCrazyShake 0.28s ease-in-out infinite; }
+
+    @keyframes jbCrazyColor {
+      0%   { fill:#35e6ff; }
+      33%  { fill:#ff4d4f; }
+      66%  { fill:#ffb020; }
+      100% { fill:#35e6ff; }
+    }
+    #antenna-crazy { animation: jbCrazyColor 0.5s linear infinite; }
+
+    @keyframes jbCrazySpin { to { transform: rotate(360deg); } }
+    .eye-spiral { transform-box: fill-box; transform-origin: center; animation: jbCrazySpin 0.35s linear infinite; }
+    .eye-spiral.rev { animation-direction: reverse; }
+
+    @keyframes jbFlailL {
+      0%,100% { transform: rotate(-15deg); }
+      25%     { transform: rotate(-70deg); }
+      50%     { transform: rotate(20deg); }
+      75%     { transform: rotate(-45deg); }
+    }
+    @keyframes jbFlailR {
+      0%,100% { transform: rotate(15deg); }
+      25%     { transform: rotate(70deg); }
+      50%     { transform: rotate(-20deg); }
+      75%     { transform: rotate(45deg); }
+    }
+    #arm-left  { transform-origin: 1.1px 1.4px;  animation: jbFlailL 0.45s ease-in-out infinite; }
+    #arm-right { transform-origin: 13.4px 1.4px; animation: jbFlailR 0.45s ease-in-out infinite; }
+
+    }
+
+    /* ── Laserschwert ───────────────────────────────────────────── */
+    .hiltMetal { fill:#4a5766; stroke:#0a141c; stroke-width:0.25; }
+    .hiltDark  { fill:#26333f; stroke:#0a141c; stroke-width:0.2; }
+
+    /* Klinge dimmt herunter und glueht dann hell im roten Spektrum auf */
+    @keyframes sabGlowOuter {
+      0%   { opacity: 0.22; }
+      45%  { opacity: 0.38; }
+      72%  { opacity: 0.95; }
+      100% { opacity: 0.22; }
+    }
+    @keyframes sabGlowMid {
+      0%   { opacity: 0.45; }
+      45%  { opacity: 0.62; }
+      72%  { opacity: 1; }
+      100% { opacity: 0.45; }
+    }
+    @keyframes sabCore {
+      0%   { opacity: 0.3; transform: scaleX(0.7); }
+      45%  { opacity: 0.55; transform: scaleX(0.85); }
+      72%  { opacity: 1; transform: scaleX(1); }
+      100% { opacity: 0.3; transform: scaleX(0.7); }
+    }
+    /* Farbspektrum-Schimmer innerhalb der Rottoene */
+    @keyframes sabSpectrumShift {
+      0%, 100% { filter: hue-rotate(0deg) saturate(1.1); }
+      50%      { filter: hue-rotate(-16deg) saturate(1.6) brightness(1.2); }
+    }
+    .blade-glow  { animation: sabGlowOuter 3s ease-in-out infinite; }
+    .blade-mid   { animation: sabGlowMid 3s ease-in-out infinite; }
+    .blade-core  { transform-box: fill-box; transform-origin: center;
+                   animation: sabCore 3s ease-in-out infinite; }
+    .saber-blade { animation: sabSpectrumShift 3s ease-in-out infinite; }
+  
+    /* Articulated robot hands */
+    .hand-palm { fill:#294760; stroke:#08131d; stroke-width:0.32; }
+    .hand-joint { fill:#102536; stroke:#35e6ff; stroke-width:0.24; }
+    .hand-finger { fill:none; stroke:#35e6ff; stroke-width:0.48; stroke-linecap:round; }
+    .hand-grip-line { fill:none; stroke:#7ff3ff; stroke-width:0.28; stroke-linecap:round; opacity:0.85; }
+  </style>
+
+  <ellipse cx="7.5" cy="16" rx="7.3" ry="1.8" fill="url(#gShadow)"/>
+
+  <g id="body-crazy">
+    <line x1="7.5" y1="-10" x2="7.5" y2="-13" stroke="#0a141c" stroke-width="0.6"/>
+    <circle id="antenna-crazy" cx="7.5" cy="-13.3" r="1"/>
+    <circle cx="7.15" cy="-13.65" r="0.3" fill="#ffffff" opacity="0.75"/>
+
+    <rect x="2" y="-10" width="11" height="8" rx="2.2" class="shell"/>
+    <path d="M3.3 -9.35 h8.2" fill="none" stroke="#ffffff" stroke-opacity="0.17" stroke-linecap="round" stroke-width="0.35"/>
+    <circle cx="1.95" cy="-6.1" r="0.85" class="panel"/>
+    <circle cx="13.05" cy="-6.1" r="0.85" class="panel"/>
+    <circle cx="1.95" cy="-6.1" r="0.28" fill="#0a141c" opacity="0.7"/>
+    <circle cx="13.05" cy="-6.1" r="0.28" fill="#0a141c" opacity="0.7"/>
+    <rect x="3.3" y="-8.6" width="8.4" height="4" rx="1.6" fill="url(#gVisor)" stroke="#070d13" stroke-width="0.35"/>
+    <path d="M4.2 -8.1 h2.4" stroke="#a8ecff" stroke-opacity="0.22" stroke-width="0.28" stroke-linecap="round"/>
+
+    <g>
+      <circle cx="5.6" cy="-6.6" r="1.1" fill="none" stroke="#35e6ff" stroke-width="0.35"/>
+      <path class="eye-spiral" d="M5.6 -7.4 a0.8 0.8 0 1 1 -0.8 0.8" stroke="#35e6ff" stroke-width="0.4" fill="none"/>
+      <circle cx="9.4" cy="-6.6" r="1.1" fill="none" stroke="#35e6ff" stroke-width="0.35"/>
+      <path class="eye-spiral rev" d="M9.4 -7.4 a0.8 0.8 0 1 1 -0.8 0.8" stroke="#35e6ff" stroke-width="0.4" fill="none"/>
+    </g>
+
+    <rect x="6.1" y="-2.1" width="2.8" height="1.2" rx="0.3" fill="#1d2f40" stroke="#070d13" stroke-width="0.25"/>
+    <path d="M6.5 -1.5 h2" stroke="#070d13" stroke-width="0.2"/>
+    <rect x="1.3" y="-1.6" width="12.4" height="11.5" rx="2.6" class="shell"/>
+    <rect x="3.2" y="0.5" width="8.6" height="7.6" rx="1.6" fill="none" stroke="#070d13" stroke-opacity="0.6" stroke-width="0.28"/>
+    <path d="M2.3 0.4 q0 -1.1 1.1 -1.1 h3" fill="none" stroke="#ffffff" stroke-opacity="0.17" stroke-linecap="round" stroke-width="0.35"/>
+    <circle cx="3.95" cy="1.25" r="0.2" fill="#070d13" opacity="0.65"/>
+    <circle cx="11.05" cy="1.25" r="0.2" fill="#070d13" opacity="0.65"/>
+    <circle cx="7.5" cy="5.5" r="1.7" class="core"/>
+    <g class="foot"><rect x="3.35" y="9.35" width="1.5" height="1" rx="0.35" fill="#1d2f40" stroke="#070d13" stroke-width="0.25"/><rect x="2" y="10.1" width="4.2" height="1.15" rx="0.55" class="panel"/><path d="M2.6 10.4 h1.7" stroke="#ffffff" stroke-opacity="0.18" stroke-width="0.2" stroke-linecap="round"/><path d="M2.5 11 h3.2" stroke="#35e6ff" stroke-opacity="0.55" stroke-width="0.22" stroke-linecap="round"/></g>
+    <g class="foot"><rect x="10.65" y="9.35" width="1.5" height="1" rx="0.35" fill="#1d2f40" stroke="#070d13" stroke-width="0.25"/><rect x="9.3" y="10.1" width="4.2" height="1.15" rx="0.55" class="panel"/><path d="M9.9 10.4 h1.7" stroke="#ffffff" stroke-opacity="0.18" stroke-width="0.2" stroke-linecap="round"/><path d="M9.8 11 h3.2" stroke="#35e6ff" stroke-opacity="0.55" stroke-width="0.22" stroke-linecap="round"/></g>
+
+    <g id="arm-left"><rect x="-0.4" y="1" width="2.4" height="6.4" rx="1.2" class="panel"/>
+      <circle cx="0.8" cy="2.0" r="0.72" class="hand-joint"/>
+      <g class="hand-left">
+        <rect x="-0.55" y="6.45" width="2.7" height="2.05" rx="0.82" class="hand-palm"/>
+        <path d="M-0.15 8.0 l-0.45 1.0 M0.65 8.35 l-0.05 1.08 M1.45 8.05 l0.42 0.96" class="hand-finger"/>
+        <circle cx="0.8" cy="7.35" r="0.38" class="hand-joint"/>
+      </g></g>
+    <g id="arm-right">
+      <rect x="12.5" y="1" width="2.4" height="6.4" rx="1.2" class="panel"/>
+      <circle cx="13.7" cy="2.0" r="0.72" class="hand-joint"/>
+      <g class="hand-right hand-grip">
+        <rect x="13.35" y="6.05" width="2.55" height="1.85" rx="0.72" class="hand-palm"/>
+        <path d="M13.65 6.55 h1.7 M13.65 7.12 h1.7 M13.85 7.65 h1.3" class="hand-grip-line"/>
+        <circle cx="14.62" cy="6.98" r="0.34" class="hand-joint"/>
+      </g>
+      <g class="laser-saber" transform="rotate(10 14.6 7.6)">
+        <g class="saber-blade">
+          <rect class="blade-glow" x="13.55" y="-2.8" width="2.1" height="7.9" rx="1.05" fill="url(#sabSpectrum)" filter="url(#sabBlur)"/>
+          <rect class="blade-mid" x="13.95" y="-2.8" width="1.3" height="7.9" rx="0.65" fill="url(#sabSpectrum)"/>
+          <rect class="blade-core" x="14.3" y="-2.6" width="0.6" height="7.6" rx="0.3" fill="#fff0f0"/>
+        </g>
+        <rect x="14.0" y="4.8" width="1.2" height="2.9" rx="0.35" class="hiltMetal"/>
+        <rect x="13.85" y="4.7" width="1.5" height="0.55" rx="0.2" class="hiltDark"/>
+        <rect x="14.0" y="5.95" width="1.2" height="0.3" fill="#0a141c" opacity="0.75"/>
+        <rect x="14.0" y="6.55" width="1.2" height="0.3" fill="#0a141c" opacity="0.75"/>
+        <circle cx="14.6" cy="7.25" r="0.26" fill="#ff2a3a"/>
+      </g>
+    </g>
+  </g>
+</svg>

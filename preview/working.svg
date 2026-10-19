@@ -1,0 +1,345 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -17 19 33">
+  <defs>
+    <linearGradient id="gShell" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2d445c"/>
+      <stop offset="45%" stop-color="#1b2a3a"/>
+      <stop offset="100%" stop-color="#0f1922"/>
+    </linearGradient>
+    <linearGradient id="gPanel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#31506c"/>
+      <stop offset="100%" stop-color="#172838"/>
+    </linearGradient>
+    <linearGradient id="gVisor" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#10212d"/>
+      <stop offset="100%" stop-color="#040b12"/>
+    </linearGradient>
+    <radialGradient id="gEye" cx="0.5" cy="0.42" r="0.68">
+      <stop offset="0%" stop-color="#f2feff"/>
+      <stop offset="38%" stop-color="#86f2ff"/>
+      <stop offset="100%" stop-color="#16b4d8"/>
+    </radialGradient>
+    <radialGradient id="gCore" cx="0.45" cy="0.4" r="0.6">
+      <stop offset="0%" stop-color="#d8fcff"/>
+      <stop offset="40%" stop-color="#3fe4ff"/>
+      <stop offset="100%" stop-color="#0a6f8a"/>
+    </radialGradient>
+    <radialGradient id="gShadow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0%" stop-color="#000" stop-opacity="0.38"/>
+      <stop offset="100%" stop-color="#000" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="gKeyboardCase" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#334b60"/>
+      <stop offset="45%" stop-color="#182936"/>
+      <stop offset="100%" stop-color="#071018"/>
+    </linearGradient>
+    <linearGradient id="gKeycap" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#48677d"/>
+      <stop offset="35%" stop-color="#263e50"/>
+      <stop offset="100%" stop-color="#101e29"/>
+    </linearGradient>
+    <filter id="keyGlow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="0.28"/>
+    </filter>
+    <linearGradient id="gScreen" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#03140a"/>
+      <stop offset="100%" stop-color="#000502"/>
+    </linearGradient>
+    <linearGradient id="gGlare" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.13"/>
+      <stop offset="45%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="textGlow" x="-20%" y="-150%" width="140%" height="400%">
+      <feGaussianBlur stdDeviation="0.12" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <clipPath id="screenClip"><rect x="3.75" y="1.05" width="7.5" height="5.1" rx="0.6"/></clipPath>
+  </defs>
+  <style>
+    .shell   { fill:url(#gShell); stroke:#070d13; stroke-width:0.35; }
+    .panel   { fill:url(#gPanel); stroke:#070d13; stroke-width:0.3; }
+    .cyanGlow{ fill:#35e6ff; }
+    .core    { fill:url(#gCore); stroke:#8ff4ff; stroke-width:0.25; }
+    .screen  { fill:#0a141c; stroke:#35e6ff; stroke-width:0.4; }
+
+    @keyframes jbTypeL { 0%,100% { transform: translateY(0); } 50% { transform: translateY(0.9px); } }
+    @keyframes jbTypeR { 0%,100% { transform: translateY(0.9px); } 50% { transform: translateY(0); } }
+    #arm-left  { animation: jbTypeL 0.32s ease-in-out infinite; }
+    #arm-right { animation: jbTypeR 0.32s ease-in-out infinite; }
+
+    /* ── Brustmonitor: Matrix-Regen ──────────────────────────────
+       Jede Spalte ist ein Strom aus Zeichen, der per translateY nach
+       unten faellt (Clip auf den Bildschirm). Kopfzeichen hell, Schweif
+       verblasst nach oben. Einzelne Zeichen flackern zusaetzlich. */
+    .mx { font-family: 'MS Gothic','Yu Gothic','Meiryo',monospace; font-size: 0.66px; font-weight: bold; text-anchor: middle; }
+    @keyframes jbRain { 0% { transform: translateY(0px); } 100% { transform: translateY(11.44px); } }
+    @keyframes jbFlick { 0%,100% { opacity: 1; } 45% { opacity: 0.25; } 55% { opacity: 1; } }
+    .flick { animation: jbFlick 0.9s steps(2,end) infinite; }
+    #mx0 { animation: jbRain 1.99s linear -0.3s infinite; }
+    #mx1 { animation: jbRain 2.15s linear -0.15s infinite; }
+    #mx2 { animation: jbRain 1.57s linear -0.35s infinite; }
+    #mx3 { animation: jbRain 2.36s linear -0.44s infinite; }
+    #mx4 { animation: jbRain 2.89s linear -1.04s infinite; }
+    #mx5 { animation: jbRain 2.17s linear -1.32s infinite; }
+    #mx6 { animation: jbRain 2.36s linear -2.07s infinite; }
+    #mx7 { animation: jbRain 2.55s linear -0.17s infinite; }
+    #mx8 { animation: jbRain 1.53s linear -0.71s infinite; }
+
+    @keyframes jbScan { 0% { transform: translateY(0); } 100% { transform: translateY(5.1px); } }
+    #scanline { animation: jbScan 2.2s linear infinite; }
+    
+    .keyboard-case { fill:url(#gKeyboardCase); stroke:#050b10; stroke-width:0.38; }
+    .keyboard-rim { fill:none; stroke:#6eefff; stroke-width:0.18; opacity:0.58; }
+    .keycap { fill:url(#gKeycap); stroke:#071018; stroke-width:0.16; }
+    .key-mark { fill:none; stroke:#9bf7ff; stroke-width:0.12; stroke-linecap:round; opacity:0.62; }
+    .key-led { fill:#35e6ff; opacity:0.62; }
+    @keyframes jbKeyPress {
+      0%,62%,100% { transform:translateY(0); filter:none; }
+      72%,86% { transform:translateY(0.22px); filter:brightness(2.2); }
+    }
+    @keyframes jbLedSweep {
+      0%,100% { opacity:0.28; }
+      45%,60% { opacity:1; }
+    }
+    .key-press { animation:jbKeyPress 0.64s ease-in-out infinite; transform-box:fill-box; transform-origin:center; }
+    .key-press.alt { animation-delay:0.32s; }
+    .key-led { animation:jbLedSweep 1.6s ease-in-out infinite; }
+    .key-led.alt { animation-delay:0.5s; }
+
+    /* ── Laserschwert: beim Programmieren weggesteckt ───────────── */
+    /* Klinge aus, Griff haengt am Guertel - beide Haende frei zum Tippen */
+    .hiltMetal { fill:#4a5766; stroke:#0a141c; stroke-width:0.25; }
+    .hiltDark  { fill:#26333f; stroke:#0a141c; stroke-width:0.2; }
+    .hiltClip  { fill:#2a3a4a; stroke:#0a141c; stroke-width:0.2; }
+    /* Einschaltknopf unbeleuchtet, solange die Klinge aus ist */
+    .powerOff  { fill:#6b1a22; }
+  
+    /* Articulated robot hands */
+    .hand-palm { fill:#294760; stroke:#08131d; stroke-width:0.32; }
+    .hand-joint { fill:#102536; stroke:#35e6ff; stroke-width:0.24; }
+    .hand-finger { fill:none; stroke:#35e6ff; stroke-width:0.48; stroke-linecap:round; }
+    .hand-grip-line { fill:none; stroke:#7ff3ff; stroke-width:0.28; stroke-linecap:round; opacity:0.85; }
+    .typing-finger { animation: jbFingerTap 0.32s ease-in-out infinite; transform-box:fill-box; transform-origin:center; }
+    .typing-finger.alt { animation-delay:0.16s; }
+    @keyframes jbFingerTap { 0%,100% { transform:translateY(0); } 50% { transform:translateY(0.45px); } }
+  </style>
+
+  <ellipse cx="7.5" cy="16" rx="7.3" ry="1.8" fill="url(#gShadow)"/>
+
+  <line x1="7.5" y1="-10" x2="7.5" y2="-13" stroke="#0a141c" stroke-width="0.6"/>
+  <circle cx="7.5" cy="-13.3" r="1" class="cyanGlow"/>
+  <circle cx="7.15" cy="-13.65" r="0.3" fill="#ffffff" opacity="0.75"/>
+  <rect x="2" y="-10" width="11" height="8" rx="2.2" class="shell"/>
+  <path d="M3.3 -9.35 h8.2" fill="none" stroke="#ffffff" stroke-opacity="0.17" stroke-linecap="round" stroke-width="0.35"/>
+  <circle cx="1.95" cy="-6.1" r="0.85" class="panel"/>
+  <circle cx="13.05" cy="-6.1" r="0.85" class="panel"/>
+  <circle cx="1.95" cy="-6.1" r="0.28" fill="#0a141c" opacity="0.7"/>
+  <circle cx="13.05" cy="-6.1" r="0.28" fill="#0a141c" opacity="0.7"/>
+  <rect x="3.3" y="-8.6" width="8.4" height="4" rx="1.6" fill="url(#gVisor)" stroke="#070d13" stroke-width="0.35"/>
+  <path d="M4.2 -8.1 h2.4" stroke="#a8ecff" stroke-opacity="0.22" stroke-width="0.28" stroke-linecap="round"/>
+  <rect x="4.5" y="-8" width="2.8" height="3" rx="1" fill="url(#gEye)"/>
+  <circle cx="5.9" cy="-6.0" r="0.78" fill="#04202b"/>
+  <circle cx="6.2" cy="-6.35" r="0.26" fill="#ffffff"/>
+  <rect x="8.2" y="-8" width="2.8" height="3" rx="1" fill="url(#gEye)"/>
+  <circle cx="9.6" cy="-6.0" r="0.78" fill="#04202b"/>
+  <circle cx="9.9" cy="-6.35" r="0.26" fill="#ffffff"/>
+
+  <rect x="6.1" y="-2.1" width="2.8" height="1.2" rx="0.3" fill="#1d2f40" stroke="#070d13" stroke-width="0.25"/>
+  <path d="M6.5 -1.5 h2" stroke="#070d13" stroke-width="0.2"/>
+  <rect x="1.3" y="-1.6" width="12.4" height="11.5" rx="2.6" class="shell"/>
+  <rect x="3.2" y="0.5" width="8.6" height="7.6" rx="1.6" fill="none" stroke="#070d13" stroke-opacity="0.6" stroke-width="0.28"/>
+  <path d="M2.3 0.4 q0 -1.1 1.1 -1.1 h3" fill="none" stroke="#ffffff" stroke-opacity="0.17" stroke-linecap="round" stroke-width="0.35"/>
+  <circle cx="3.95" cy="1.25" r="0.2" fill="#070d13" opacity="0.65"/>
+  <circle cx="11.05" cy="1.25" r="0.2" fill="#070d13" opacity="0.65"/>
+
+  <!-- Brustmonitor: eingebaut in die Brustplatte -->
+  <g id="chest-monitor">
+    <rect x="3.45" y="0.75" width="8.1" height="5.7" rx="0.85" fill="#0d1a24" stroke="#070d13" stroke-width="0.3"/>
+    <rect x="3.75" y="1.05" width="7.5" height="5.1" rx="0.6" fill="url(#gScreen)" stroke="#35e6ff" stroke-opacity="0.55" stroke-width="0.18"/>
+    <g clip-path="url(#screenClip)">
+      <g filter="url(#textGlow)">
+        <g id="mx0">
+          <text x="4.15" y="0.65" fill="#e8ffe8" opacity="1" class="mx">ﾛ</text>
+          <text x="4.15" y="-0.03" fill="#3dff6e" opacity="0.88" class="mx">ｴ</text>
+          <text x="4.15" y="-0.71" fill="#3dff6e" opacity="0.75" class="mx">ｵ</text>
+          <text x="4.15" y="-1.39" fill="#3dff6e" opacity="0.62" class="mx">ｷ</text>
+          <text x="4.15" y="-2.07" fill="#3dff6e" opacity="0.5" class="mx">ﾈ</text>
+          <text x="4.15" y="-2.75" fill="#3dff6e" opacity="0.38" class="mx flick" style="animation-delay:0.46s">ﾗ</text>
+          <text x="4.15" y="-3.43" fill="#3dff6e" opacity="0.25" class="mx">ｳ</text>
+          <text x="4.15" y="-4.11" fill="#3dff6e" opacity="0.12" class="mx">ｶ</text>
+        </g>
+        <g id="mx1">
+          <text x="5.0" y="0.65" fill="#e8ffe8" opacity="1" class="mx">ｶ</text>
+          <text x="5.0" y="-0.03" fill="#3dff6e" opacity="0.88" class="mx">ﾕ</text>
+          <text x="5.0" y="-0.71" fill="#3dff6e" opacity="0.75" class="mx flick" style="animation-delay:0.51s">ﾍ</text>
+          <text x="5.0" y="-1.39" fill="#3dff6e" opacity="0.62" class="mx">ｿ</text>
+          <text x="5.0" y="-2.07" fill="#3dff6e" opacity="0.5" class="mx">ﾚ</text>
+          <text x="5.0" y="-2.75" fill="#3dff6e" opacity="0.38" class="mx flick" style="animation-delay:0.06s">ﾚ</text>
+          <text x="5.0" y="-3.43" fill="#3dff6e" opacity="0.25" class="mx">ﾗ</text>
+          <text x="5.0" y="-4.11" fill="#3dff6e" opacity="0.12" class="mx">ﾋ</text>
+        </g>
+        <g id="mx2">
+          <text x="5.85" y="0.65" fill="#e8ffe8" opacity="1" class="mx">ﾕ</text>
+          <text x="5.85" y="-0.03" fill="#3dff6e" opacity="0.88" class="mx">Z</text>
+          <text x="5.85" y="-0.71" fill="#3dff6e" opacity="0.75" class="mx flick" style="animation-delay:0.13s">ｹ</text>
+          <text x="5.85" y="-1.39" fill="#3dff6e" opacity="0.62" class="mx">ｸ</text>
+          <text x="5.85" y="-2.07" fill="#3dff6e" opacity="0.5" class="mx">ﾖ</text>
+          <text x="5.85" y="-2.75" fill="#3dff6e" opacity="0.38" class="mx flick" style="animation-delay:0.61s">ﾄ</text>
+          <text x="5.85" y="-3.43" fill="#3dff6e" opacity="0.25" class="mx">ｷ</text>
+          <text x="5.85" y="-4.11" fill="#3dff6e" opacity="0.12" class="mx">ﾗ</text>
+        </g>
+        <g id="mx3">
+          <text x="6.7" y="0.65" fill="#e8ffe8" opacity="1" class="mx">ｷ</text>
+          <text x="6.7" y="-0.03" fill="#3dff6e" opacity="0.88" class="mx">ﾕ</text>
+          <text x="6.7" y="-0.71" fill="#3dff6e" opacity="0.75" class="mx flick" style="animation-delay:0.05s">1</text>
+          <text x="6.7" y="-1.39" fill="#3dff6e" opacity="0.62" class="mx">ｾ</text>
+          <text x="6.7" y="-2.07" fill="#3dff6e" opacity="0.5" class="mx">ﾑ</text>
+          <text x="6.7" y="-2.75" fill="#3dff6e" opacity="0.38" class="mx flick" style="animation-delay:0.7s">ﾝ</text>
+          <text x="6.7" y="-3.43" fill="#3dff6e" opacity="0.25" class="mx">ﾏ</text>
+          <text x="6.7" y="-4.11" fill="#3dff6e" opacity="0.12" class="mx">ﾗ</text>
+        </g>
+        <g id="mx4">
+          <text x="7.55" y="0.65" fill="#e8ffe8" opacity="1" class="mx">ﾀ</text>
+          <text x="7.55" y="-0.03" fill="#3dff6e" opacity="0.88" class="mx">6</text>
+          <text x="7.55" y="-0.71" fill="#3dff6e" opacity="0.75" class="mx">ｼ</text>
+          <text x="7.55" y="-1.39" fill="#3dff6e" opacity="0.62" class="mx">ﾀ</text>
+          <text x="7.55" y="-2.07" fill="#3dff6e" opacity="0.5" class="mx">ｶ</text>
+          <text x="7.55" y="-2.75" fill="#3dff6e" opacity="0.38" class="mx flick" style="animation-delay:0.45s">ﾖ</text>
+          <text x="7.55" y="-3.43" fill="#3dff6e" opacity="0.25" class="mx">ﾆ</text>
+          <text x="7.55" y="-4.11" fill="#3dff6e" opacity="0.12" class="mx">2</text>
+        </g>
+        <g id="mx5">
+          <text x="8.4" y="0.65" fill="#e8ffe8" opacity="1" class="mx">ｵ</text>
+          <text x="8.4" y="-0.03" fill="#3dff6e" opacity="0.88" class="mx">ｸ</text>
+          <text x="8.4" y="-0.71" fill="#3dff6e" opacity="0.75" class="mx flick" style="animation-delay:0.68s">ﾒ</text>
+          <text x="8.4" y="-1.39" fill="#3dff6e" opacity="0.62" class="mx">ｺ</text>
+          <text x="8.4" y="-2.07" fill="#3dff6e" opacity="0.5" class="mx">ﾑ</text>
+          <text x="8.4" y="-2.75" fill="#3dff6e" opacity="0.38" class="mx flick" style="animation-delay:0.6s">ﾌ</text>
+          <text x="8.4" y="-3.43" fill="#3dff6e" opacity="0.25" class="mx">4</text>
+          <text x="8.4" y="-4.11" fill="#3dff6e" opacity="0.12" class="mx">ﾕ</text>
+        </g>
+        <g id="mx6">
+          <text x="9.25" y="0.65" fill="#e8ffe8" opacity="1" class="mx">ﾅ</text>
+          <text x="9.25" y="-0.03" fill="#3dff6e" opacity="0.88" class="mx">ﾆ</text>
+          <text x="9.25" y="-0.71" fill="#3dff6e" opacity="0.75" class="mx flick" style="animation-delay:0.45s">0</text>
+          <text x="9.25" y="-1.39" fill="#3dff6e" opacity="0.62" class="mx">7</text>
+          <text x="9.25" y="-2.07" fill="#3dff6e" opacity="0.5" class="mx">ﾏ</text>
+          <text x="9.25" y="-2.75" fill="#3dff6e" opacity="0.38" class="mx">ｵ</text>
+          <text x="9.25" y="-3.43" fill="#3dff6e" opacity="0.25" class="mx">ﾂ</text>
+          <text x="9.25" y="-4.11" fill="#3dff6e" opacity="0.12" class="mx">ﾐ</text>
+        </g>
+        <g id="mx7">
+          <text x="10.1" y="0.65" fill="#e8ffe8" opacity="1" class="mx">2</text>
+          <text x="10.1" y="-0.03" fill="#3dff6e" opacity="0.88" class="mx">0</text>
+          <text x="10.1" y="-0.71" fill="#3dff6e" opacity="0.75" class="mx">ﾄ</text>
+          <text x="10.1" y="-1.39" fill="#3dff6e" opacity="0.62" class="mx">ﾝ</text>
+          <text x="10.1" y="-2.07" fill="#3dff6e" opacity="0.5" class="mx">8</text>
+          <text x="10.1" y="-2.75" fill="#3dff6e" opacity="0.38" class="mx flick" style="animation-delay:0.35s">ﾎ</text>
+          <text x="10.1" y="-3.43" fill="#3dff6e" opacity="0.25" class="mx">ﾜ</text>
+          <text x="10.1" y="-4.11" fill="#3dff6e" opacity="0.12" class="mx">ﾇ</text>
+        </g>
+        <g id="mx8">
+          <text x="10.9" y="0.65" fill="#e8ffe8" opacity="1" class="mx">ｻ</text>
+          <text x="10.9" y="-0.03" fill="#3dff6e" opacity="0.88" class="mx">ﾙ</text>
+          <text x="10.9" y="-0.71" fill="#3dff6e" opacity="0.75" class="mx flick" style="animation-delay:0.2s">ｸ</text>
+          <text x="10.9" y="-1.39" fill="#3dff6e" opacity="0.62" class="mx">ﾃ</text>
+          <text x="10.9" y="-2.07" fill="#3dff6e" opacity="0.5" class="mx">ｹ</text>
+          <text x="10.9" y="-2.75" fill="#3dff6e" opacity="0.38" class="mx flick" style="animation-delay:0.35s">3</text>
+          <text x="10.9" y="-3.43" fill="#3dff6e" opacity="0.25" class="mx">:</text>
+          <text x="10.9" y="-4.11" fill="#3dff6e" opacity="0.12" class="mx">ﾑ</text>
+        </g>
+      </g>
+      <rect id="scanline" x="3.75" y="1.05" width="7.5" height="0.18" fill="#5cff8a" opacity="0.07"/>
+    </g>
+    <!-- Glasreflex -->
+    <path d="M3.9 1.2 h3.2 l-2.4 2.6 h-0.8 z" fill="url(#gGlare)"/>
+    <!-- Lautsprechergitter unter dem Monitor -->
+    <path d="M5.6 7.0 h3.8 M5.6 7.45 h3.8" stroke="#070d13" stroke-width="0.22" stroke-linecap="round" opacity="0.8"/>
+  </g>
+  <g class="foot"><rect x="3.35" y="9.35" width="1.5" height="1" rx="0.35" fill="#1d2f40" stroke="#070d13" stroke-width="0.25"/><rect x="2" y="10.1" width="4.2" height="1.15" rx="0.55" class="panel"/><path d="M2.6 10.4 h1.7" stroke="#ffffff" stroke-opacity="0.18" stroke-width="0.2" stroke-linecap="round"/><path d="M2.5 11 h3.2" stroke="#35e6ff" stroke-opacity="0.55" stroke-width="0.22" stroke-linecap="round"/></g>
+  <g class="foot"><rect x="10.65" y="9.35" width="1.5" height="1" rx="0.35" fill="#1d2f40" stroke="#070d13" stroke-width="0.25"/><rect x="9.3" y="10.1" width="4.2" height="1.15" rx="0.55" class="panel"/><path d="M9.9 10.4 h1.7" stroke="#ffffff" stroke-opacity="0.18" stroke-width="0.2" stroke-linecap="round"/><path d="M9.8 11 h3.2" stroke="#35e6ff" stroke-opacity="0.55" stroke-width="0.22" stroke-linecap="round"/></g>
+
+  <!-- Perspektivische mechanische Tastatur -->
+  <g id="keyboard">
+    <path d="M1.35 10.15 H13.65 L14.55 14.35 H0.45 Z" class="keyboard-case"/>
+    <path d="M1.62 10.45 H13.38 L14.18 14.02 H0.82 Z" class="keyboard-rim"/>
+    <path d="M1.55 14.2 H13.45" stroke="#02070b" stroke-width="0.45" stroke-linecap="round" opacity="0.8"/>
+
+    <!-- obere Tastenreihe -->
+    <g>
+      <rect x="1.85" y="10.62" width="0.78" height="0.48" rx="0.12" class="keycap"/>
+      <rect x="2.82" y="10.62" width="0.78" height="0.48" rx="0.12" class="keycap"/>
+      <rect x="3.79" y="10.62" width="0.78" height="0.48" rx="0.12" class="keycap"/>
+      <rect x="4.76" y="10.62" width="0.78" height="0.48" rx="0.12" class="keycap"/>
+      <rect x="5.73" y="10.62" width="0.78" height="0.48" rx="0.12" class="keycap"/>
+      <rect x="6.70" y="10.62" width="0.78" height="0.48" rx="0.12" class="keycap"/>
+      <rect x="7.67" y="10.62" width="0.78" height="0.48" rx="0.12" class="keycap"/>
+      <rect x="8.64" y="10.62" width="0.78" height="0.48" rx="0.12" class="keycap"/>
+      <rect x="9.61" y="10.62" width="0.78" height="0.48" rx="0.12" class="keycap"/>
+      <rect x="10.58" y="10.62" width="0.78" height="0.48" rx="0.12" class="keycap"/>
+      <rect x="11.55" y="10.62" width="1.12" height="0.48" rx="0.12" class="keycap"/>
+    </g>
+
+    <!-- mittlere Schreibreihe -->
+    <g>
+      <rect x="1.65" y="11.38" width="1.12" height="0.65" rx="0.14" class="keycap"/>
+      <rect x="2.96" y="11.38" width="0.86" height="0.65" rx="0.14" class="keycap"/>
+      <rect x="4.01" y="11.38" width="0.86" height="0.65" rx="0.14" class="keycap key-press"/>
+      <rect x="5.06" y="11.38" width="0.86" height="0.65" rx="0.14" class="keycap"/>
+      <rect x="6.11" y="11.38" width="0.86" height="0.65" rx="0.14" class="keycap"/>
+      <rect x="7.16" y="11.38" width="0.86" height="0.65" rx="0.14" class="keycap"/>
+      <rect x="8.21" y="11.38" width="0.86" height="0.65" rx="0.14" class="keycap key-press alt"/>
+      <rect x="9.26" y="11.38" width="0.86" height="0.65" rx="0.14" class="keycap"/>
+      <rect x="10.31" y="11.38" width="0.86" height="0.65" rx="0.14" class="keycap"/>
+      <path d="M11.36 11.38 h1.42 v1.4 h-0.72 v-0.75 h-0.7 z" class="keycap"/>
+      <path d="M11.72 11.72 h0.58 v0.36 h-0.32" class="key-mark"/>
+    </g>
+
+    <!-- untere Reihe mit Shift, Space und Pfeiltasten -->
+    <g>
+      <rect x="1.35" y="12.35" width="1.45" height="0.72" rx="0.16" class="keycap"/>
+      <path d="M1.88 12.83 l0.2 -0.22 l0.2 0.22 M2.08 12.62 v0.28" class="key-mark"/>
+      <rect x="3.05" y="12.35" width="0.86" height="0.72" rx="0.16" class="keycap"/>
+      <rect x="4.16" y="12.35" width="0.86" height="0.72" rx="0.16" class="keycap"/>
+      <rect x="5.27" y="12.35" width="4.05" height="0.72" rx="0.2" class="keycap"/>
+      <path d="M6.18 12.79 h2.22" class="key-mark"/>
+      <rect x="9.57" y="12.35" width="0.86" height="0.72" rx="0.16" class="keycap"/>
+      <rect x="10.68" y="12.35" width="0.86" height="0.72" rx="0.16" class="keycap"/>
+      <rect x="12.02" y="12.34" width="0.72" height="0.45" rx="0.12" class="keycap"/>
+      <rect x="11.22" y="12.84" width="0.72" height="0.45" rx="0.12" class="keycap"/>
+      <rect x="12.02" y="12.84" width="0.72" height="0.45" rx="0.12" class="keycap"/>
+      <rect x="12.82" y="12.84" width="0.72" height="0.45" rx="0.12" class="keycap"/>
+      <path d="M12.38 12.48 v0.16 M11.42 13.07 h0.18 M12.38 13.02 v0.16 M13.15 13.07 h0.18" class="key-mark"/>
+    </g>
+
+    <!-- RGB-Unterlicht und Statusanzeigen -->
+    <path d="M1.2 13.72 H13.8" stroke="#35e6ff" stroke-width="0.35" opacity="0.35" filter="url(#keyGlow)"/>
+    <circle cx="1.48" cy="13.7" r="0.16" class="key-led"/>
+    <circle cx="1.96" cy="13.7" r="0.16" class="key-led alt"/>
+    <circle cx="2.44" cy="13.7" r="0.16" fill="#ff415e" opacity="0.75"/>
+  </g>
+
+  <g id="arm-left">
+    <circle cx="0.8" cy="2" r="0.72" class="hand-joint"/>
+    <rect x="-0.4" y="1" width="2.4" height="9.1" rx="1.2" class="panel"/>
+    <rect x="-0.5" y="9.35" width="3.05" height="1.8" rx="0.72" class="hand-palm"/>
+    <path d="M1.4 10.25 L3.35 11.62 M1.0 10.55 L3.1 12.02 M0.45 10.65 L2.25 12.45" class="hand-finger typing-finger"/>
+  </g>
+  <g id="arm-right">
+    <circle cx="13.7" cy="2" r="0.72" class="hand-joint"/>
+    <rect x="12.5" y="1" width="2.4" height="9.1" rx="1.2" class="panel"/>
+    <rect x="11.95" y="9.35" width="3.05" height="1.8" rx="0.72" class="hand-palm"/>
+    <path d="M13.1 10.25 L9.0 11.62 M13.5 10.55 L10.5 12.02 M14.05 10.65 L12.3 12.45" class="hand-finger typing-finger alt"/>
+  </g>
+
+  <!-- Weggestecktes Laserschwert: Griff am Guertel, Klinge deaktiviert -->
+  <g class="saber-holstered" transform="rotate(-30 14.5 7.0)">
+    <rect x="13.75" y="6.85" width="1.5" height="0.55" rx="0.15" class="hiltClip"/>
+    <rect x="13.85" y="5.4" width="1.3" height="3.1" rx="0.4" class="hiltMetal"/>
+    <rect x="13.7" y="5.3" width="1.6" height="0.6" rx="0.2" class="hiltDark"/>
+    <rect x="13.85" y="6.6" width="1.3" height="0.32" fill="#0a141c" opacity="0.75"/>
+    <rect x="13.85" y="7.25" width="1.3" height="0.32" fill="#0a141c" opacity="0.75"/>
+    <circle cx="14.5" cy="8.0" r="0.28" class="powerOff"/>
+  </g>
+
+
+</svg>
